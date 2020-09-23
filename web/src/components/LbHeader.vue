@@ -1,10 +1,15 @@
 <template>
   <div class="header">
-    <img class="logo" src="/img/Logo.svg">
+    <div class="logo">
+      <img src="/img/Logo.svg">
+      <h1>Lieferberlino</h1>
+    </div>
     <div class="form">
       <h1>Finde Restaurants in deiner Nähe!</h1>
-      <input type="text">
-      <button>Suchen</button>
+      <div class="addressBar">
+        <input type="text" placeholder="Address">
+        <button>Suchen</button>
+      </div>
     </div>
   </div>
 </template>
@@ -24,7 +29,18 @@ export default {
 }
 
 .logo {
+  display: flex;
+  flex-direction: row;
+  width: fit-content;
+}
+
+.logo img {
   margin: 1rem;
+}
+
+.logo h1 {
+  margin: auto;
+  color: white;
 }
 
 .form {
@@ -34,5 +50,11 @@ export default {
   justify-content: center;
   width: 20vw;
   margin: auto;
+}
+
+.addressBar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
 }
 </style>
