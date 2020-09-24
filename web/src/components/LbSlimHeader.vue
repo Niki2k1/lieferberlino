@@ -1,7 +1,7 @@
 <template>
   <div class="slimheader">
     <div class="logo">
-      <img src="/img/Logo.svg">
+      <img src="../assets/Logo.svg">
       <h1>Lieferberlino</h1>
     </div>
   </div>

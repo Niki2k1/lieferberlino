@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="logo">
-      <img src="/img/Logo.svg">
+      <img src="../assets/Logo.svg">
       <h1>Lieferberlino</h1>
     </div>
     <div class="form">
@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 .header {
-  background-image: url('/img/Header.svg');
+  background-image: url('../assets/Header.svg');
   background-size: 100%;
   background-repeat: no-repeat;
   height: 100vh;
