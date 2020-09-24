@@ -7,7 +7,7 @@
     <div class="form">
       <h1 class="text-shadow">Finde Restaurants in deiner Nähe!</h1>
       <div class="addressBar shadow">
-        <input type="text" placeholder="Address" v-model="location">
+        <input type="text" placeholder="Address" v-model="location.address">
         <button class="btn btn-primary">Suchen</button>
       </div>
     </div>
@@ -68,6 +68,10 @@ export default {
 
 .addressBar input{
   width: -webkit-fill-available;
+  border: none;
+  border-radius: .25rem 0 0 .25rem;
+  height: 2.5rem;
+  padding-left: .75rem;
 }
 
 .addressBar button{
