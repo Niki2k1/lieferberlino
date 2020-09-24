@@ -68,6 +68,7 @@ export default {
 
 .addressBar input{
   width: -webkit-fill-available;
+  width: -moz-available;
   border: none;
   border-radius: .25rem 0 0 .25rem;
   height: 2.5rem;
