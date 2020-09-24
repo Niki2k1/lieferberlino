@@ -1,5 +1,7 @@
 package de.oszimt.objects.geo;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import de.oszimt.objects.LocationIQConnector;
 import express.http.HttpRequestHandler;
 import express.http.request.Request;
@@ -19,8 +21,10 @@ public class MapAddressRequestHandler implements HttpRequestHandler {
     public void handle(Request request, Response response) {
         try {
             Address address = locationIQConnector.getAddressFromGeoLocation(Double.parseDouble(request.getQuery("lat")), Double.parseDouble(request.getQuery("lon")));
-            response.send(address.asString());
-        } catch (IOException e) {
+            JsonObject jsonObject = new JsonObject();
+            jsonObject.addProperty("address", address.asString());
+            response.send(jsonObject.toString());
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

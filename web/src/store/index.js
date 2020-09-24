@@ -14,15 +14,14 @@ export default new Vuex.Store({
   },
   mutations: {
     setLocation (state, val) {
-      fetch(`https://us1.locationiq.com/v1/reverse.php?key=pk.b18db41a3064a9b1769bf1266de93462&lat=${val.coords.latitude}&lon=${val.coords.longitude}&format=json`).then((response) => {
+      fetch(`http://localhost:5000/geo/mapAddress?lat=${val.coords.latitude}&lon=${val.coords.longitude}`).then((response) => {
         response.json().then((response) => {
-          console.log(response)
           const location = {
             coords: {
               latitude: val.coords.latitude,
               longitude: val.coords.longitude
             },
-            address: response.display_name
+            address: response.address
           }
 
           state.location = location

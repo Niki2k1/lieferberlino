@@ -1,15 +1,12 @@
 package de.oszimt.main;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import de.oszimt.objects.DataParser;
 import de.oszimt.objects.LocationIQConnector;
 import de.oszimt.objects.SQLConnection;
 import de.oszimt.objects.geo.MapAddressRequestHandler;
-import de.oszimt.objects.logger.LogType;
 import de.oszimt.objects.logger.Logger;
+import de.oszimt.objects.middleware.Cors;
+import de.oszimt.objects.middleware.CorsOptions;
 import de.oszimt.objects.routes.GeoRoute;
 import de.oszimt.objects.routes.LoginRoute;
 import express.Express;
@@ -52,6 +49,9 @@ public class Main {
         express = new Express();
         // Use cookieSession in middleware.
         express.use(Middleware.cookieSession("sessioncookie", 9000));
+        CorsOptions corsOptions = new CorsOptions();
+        corsOptions.setOrigin("*");
+        express.use(new Cors(corsOptions));
         // Init all router.
         LoginRoute loginRoute = new LoginRoute();
 

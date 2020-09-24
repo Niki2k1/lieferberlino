@@ -8,7 +8,7 @@
       <h1 class="text-shadow">Finde Restaurants in deiner Nähe!</h1>
       <div class="addressBar shadow">
         <input type="text" placeholder="Address" v-model="location.address">
-        <button class="btn btn-primary">Suchen</button>
+        <a href="/results" class="btn btn-primary">Suchen</a>
       </div>
     </div>
   </div>
@@ -74,7 +74,7 @@ export default {
   padding-left: .75rem;
 }
 
-.addressBar button{
+.addressBar a{
   border-radius: 0 .25rem .25rem 0;
 }
 </style>
