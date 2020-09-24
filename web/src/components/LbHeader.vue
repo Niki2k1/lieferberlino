@@ -5,18 +5,26 @@
       <h1>Lieferberlino</h1>
     </div>
     <div class="form">
-      <h1>Finde Restaurants in deiner Nähe!</h1>
-      <div class="addressBar">
-        <input type="text" placeholder="Address">
-        <button>Suchen</button>
+      <h1 class="text-shadow">Finde Restaurants in deiner Nähe!</h1>
+      <div class="addressBar shadow">
+        <input type="text" placeholder="Address" v-model="location">
+        <button class="btn btn-primary">Suchen</button>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'LbHeader'
+  name: 'LbHeader',
+  created () {
+    this.$store.dispatch('getCurrentLocation')
+  },
+  computed: mapState({
+    location: state => state.location
+  })
 }
 </script>
 
@@ -48,7 +56,7 @@ export default {
   flex-direction: column;
   color: white;
   justify-content: center;
-  width: 20vw;
+  width: 25vw;
   margin: auto;
 }
 
@@ -56,5 +64,13 @@ export default {
   display: flex;
   flex-direction: row;
   width: 100%;
+}
+
+.addressBar input{
+  width: -webkit-fill-available;
+}
+
+.addressBar button{
+  border-radius: 0 .25rem .25rem 0;
 }
 </style>
