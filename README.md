@@ -13,3 +13,4 @@ Als Schulprojekt haben wir eine Webapp geschrieben die eine Liste von OpenData E
 - JavaExpress
 - JDBC
 - GSON
+- LocationIQ
