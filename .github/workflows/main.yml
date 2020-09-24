@@ -1,0 +1,46 @@
+name: Build-Deploy
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [12.x]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: npm install and build
+      run: |
+        npm ci
+        npm run build
+      env:
+        CI: true
+    - uses: actions/upload-artifact@master
+      with:
+        name: webapp
+        path: build
+  
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Get artifact
+      uses: actions/download-artifact@master
+      with:
+          name: webapp
+          path: build
+    - name: Publish
+      uses: crazy-max/ghaction-github-pages@v1
+      with:
+          target_branch: gh-pages
+          build_dir: build
+      env:
+          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
