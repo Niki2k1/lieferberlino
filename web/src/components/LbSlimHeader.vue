@@ -28,6 +28,10 @@ export default {
   margin: 0;
 }
 
+.logo img {
+  width: 110px;
+}
+
 .logo h1 {
   margin: auto;
   color: white;
