@@ -18,8 +18,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .search-results {
   height: calc(100vh - 4rem);
+}
+
+body {
+  background-color: #E5E5E5;
+  background-image: none;
 }
 </style>
