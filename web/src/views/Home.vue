@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div id="home">
     <lb-header/>
   </div>
 </template>
@@ -16,4 +16,9 @@ export default {
 </script>
 
 <style scoped>
+#home {
+  background-image: url('../assets/pexels-pixabay-280453.jpg');
+  background-repeat: no-repeat;
+  background-size: 100%;
+}
 </style>
