@@ -16,7 +16,7 @@ public class SQLConnection {
     public SQLConnection(String connString, Logger logger) {
         this.logger = logger;
         try {
-            this.conn = DriverManager.getConnection(connString, "lieferberlino", "5X53cc%Fpai8K&XRE");
+            this.conn = DriverManager.getConnection(connString, "lieferberlino", "lieferberlino2020!");
             this.logger.log(LogType.INFO, "Connection to database was successfully opened.");
         } catch (Exception e) {
             e.printStackTrace();

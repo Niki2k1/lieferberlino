@@ -26,7 +26,7 @@ public class Main {
      */
     public static void main(String[] args) {
         logger = new Logger();
-        sqlConnection = new SQLConnection("jdbc:mysql://niki2k1.feste-ip.net:48448/lieferberlino?autoReconnect=true", logger);
+        sqlConnection = new SQLConnection("jdbc:mysql://0.0.0.0:3306/lieferberlino?autoReconnect=true", logger);
         // Create all tables.
         sqlConnection.execute("CREATE TABLE IF NOT EXISTS T_Shops (name VARCHAR(255), street VARCHAR(100), postalcode INTEGER, offer VARCHAR(255), delivery BOOLEAN, description_delivery TEXT, self_pickup BOOLEAN, description_self_pickup TEXT, fon VARCHAR(50), website VARCHAR(100), mail VARCHAR(50), monday VARCHAR(20), tuesday VARCHAR(20), wednesday VARCHAR(20), thursday VARCHAR(20), friday VARCHAR(20), saturday VARCHAR(20), sunday VARCHAR(20))");
         // Parse json file.
