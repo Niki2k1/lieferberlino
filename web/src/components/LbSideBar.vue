@@ -19,7 +19,7 @@ export default {
 <style scoped>
 .sidebar {
   height: 100%;
-  width: 20rem;
+  width: 25rem;
   background-color: #333333;
   color: white;
 }

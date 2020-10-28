@@ -8,7 +8,7 @@
       <h1 class="text-shadow">Finde Restaurants in deiner Nähe!</h1>
       <div class="addressBar shadow">
         <input type="text" placeholder="Address" v-model="location.address">
-        <router-link  to="/results" class="btn btn-primary">Suchen</router-link >
+        <router-link to="/results" class="btn btn-primary">Suchen</router-link >
       </div>
     </div>
   </div>

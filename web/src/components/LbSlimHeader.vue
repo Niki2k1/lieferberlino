@@ -1,9 +1,11 @@
 <template>
   <div class="slimheader">
-    <div class="logo">
-      <img src="../assets/Logo.svg">
-      <h1>Lieferberlino</h1>
-    </div>
+    <router-link to="/">
+      <div class="logo">
+        <img src="../assets/Logo.svg">
+        <h1>Lieferberlino</h1>
+      </div>
+    </router-link>
   </div>
 </template>
 
@@ -19,6 +21,10 @@ export default {
   width: 100vw;
   height: 4rem;
   background-color: #444444;
+}
+
+.slimheader a:hover {
+  text-decoration: none;
 }
 
 .logo {
@@ -37,5 +43,6 @@ export default {
   color: white;
   font-weight: 300;
   font-size: 2rem;
+  text-decoration: none;
 }
 </style>

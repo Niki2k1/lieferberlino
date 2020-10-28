@@ -7,4 +7,4 @@ services:
     volumes:
         - .:/opt/lieferberlino
     working_dir: /opt/lieferberlino
-    command: vue-cli-service serve
+    command: node_modules/.bin/vue-cli-service serve
