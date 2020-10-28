@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "install": "docker-compose run web_dev npm install",
+    "install_dev": "docker-compose run web_dev npm install",
     "serve": "docker-compose up",
     "build": "vue-cli-service build",
     "build_prd": "docker build -f docker/production/Dockerfile . -t lieferberlino_web:latest"
