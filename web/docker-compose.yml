@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  web_dev:
+    image: "node:latest"
+    ports:
+        - 8080:8080
+    volumes:
+        - .:/opt/lieferberlino
+    working_dir: /opt/lieferberlino
+    command: vue-cli-service serve
