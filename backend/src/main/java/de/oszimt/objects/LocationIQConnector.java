@@ -24,7 +24,7 @@ public class LocationIQConnector {
     }
 
     public Address getAddressFromGeoLocation(double lat, double lon) throws IOException {
-        URL url = new URL("https://us1.locationiq.com/v1/reverse.php?key=" + this.apikey + "&lat=" + lat + "&lon=" + lon + "&format=json");
+        URL url = new URL("https://eu1.locationiq.com/v1/reverse.php?key=" + this.apikey + "&lat=" + lat + "&lon=" + lon + "&format=json");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         String responseString = IOUtils.toString(con.getInputStream(), StandardCharsets.UTF_8);
