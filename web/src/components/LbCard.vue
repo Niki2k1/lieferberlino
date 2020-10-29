@@ -27,10 +27,13 @@ export default {
   border-radius: .5rem;
   background-color: #F5F5F5;
   color: #333333;
-  margin: 2rem auto 0 auto;
-  width: 90%;
+  margin: 1.5rem 1.5rem 0 1.5rem;
   padding: 1rem;
   height: max-content;
+}
+
+.card:first-of-type {
+  margin-top: 0;
 }
 
 .card img {
