@@ -16,7 +16,7 @@ public class SQLConnection {
     public SQLConnection(String connString, Logger logger) {
         this.logger = logger;
         try {
-            this.conn = DriverManager.getConnection(connString, "lieferberlino", "lieferberlino2020!");
+            this.conn = DriverManager.getConnection(connString, "lieferberlino", "5X53cc%Fpai8K&XRE");
             this.logger.log(LogType.INFO, "Connection to database was successfully opened.");
         } catch (Exception e) {
             e.printStackTrace();
@@ -45,8 +45,6 @@ public class SQLConnection {
         try {
             PreparedStatement ps = this.conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
-            rs.close();
-            ps.close();
             return rs;
         } catch (Exception e) {
             this.logger.log(LogType.ERROR, "Can't execute sql-select query: '" + query + "'.");

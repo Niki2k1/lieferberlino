@@ -24,7 +24,7 @@ public class LoginRoute {
            });
         }};
     }
-    public ExpressRouter getApp() {
+    public ExpressRouter getRouter() {
         return this.app;
     }
 }

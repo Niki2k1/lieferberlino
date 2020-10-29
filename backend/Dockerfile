@@ -4,6 +4,8 @@ FROM maven:3.6.0-jdk-11-slim AS build
 COPY src /home/app/src
 # Copy pom.xml to /home/app
 COPY pom.xml /home/app
+# Copy data.json to lib
+COPY data.json /usr/local/lib
 # Build maven project
 RUN mvn -B package --file /home/app/pom.xml
 
