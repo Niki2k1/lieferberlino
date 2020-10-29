@@ -13,7 +13,7 @@
           />
           <lb-card
             v-for="shop in pagedList"
-            :key="shop.name"
+            :key="shop.id"
             :name="shop.name"
             :address="shop.street"
             :address2="shop.postalcode"
