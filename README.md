@@ -14,3 +14,4 @@ Als Schulprojekt haben wir eine Webapp geschrieben die eine Liste von OpenData E
 - JDBC
 - GSON
 - LocationIQ
+- [geolib](https://www.npmjs.com/package/geolib)
