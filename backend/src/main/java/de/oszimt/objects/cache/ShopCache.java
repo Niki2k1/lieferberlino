@@ -26,7 +26,7 @@ public class ShopCache {
                 for(int iterator = 1; iterator < data.getMetaData().getColumnCount(); iterator++) {
                     switch (data.getMetaData().getColumnType(iterator)) {
                         case Types.BOOLEAN : object.addProperty(data.getMetaData().getColumnName(iterator), data.getBoolean(iterator)); break;
-                        case Types.TINYINT : object.addProperty(data.getMetaData().getColumnName(iterator), data.getBoolean(iterator)); break;
+                        case Types.BIT : object.addProperty(data.getMetaData().getColumnName(iterator), data.getBoolean(iterator)); break;
                         case Types.INTEGER : object.addProperty(data.getMetaData().getColumnName(iterator), data.getInt(iterator)); break;
                         default : object.addProperty(data.getMetaData().getColumnName(iterator), data.getString(iterator)); break;
                     }
