@@ -20,7 +20,7 @@ public class MapAddressRequestHandler implements HttpRequestHandler {
     @Override
     public void handle(Request request, Response response) {
         try {
-            Address address = locationIQConnector.getAddressFromGeoLocation(Double.parseDouble(request.getQuery("lat")), Double.parseDouble(request.getQuery("lon")));
+            Address address = locationIQConnector.getAddressFromAddressString(request.getQuery("address"));
             JsonObject jsonObject = new JsonObject();
             jsonObject.addProperty("address", address.asString());
             response.send(jsonObject.toString());

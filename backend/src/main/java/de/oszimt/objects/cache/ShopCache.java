@@ -22,28 +22,18 @@ public class ShopCache {
             JsonObject object;
             while(data.next()) {
                 object = new JsonObject();
-                object.addProperty("name", data.getString("name"));
-                object.addProperty("street", data.getString("street"));
-                object.addProperty("postalcode", data.getString("postalcode"));
-                object.addProperty("offer", data.getString("offer"));
-                object.addProperty("delivery", data.getString("delivery"));
-                object.addProperty("description_delivery", data.getString("description_delivery"));
-                object.addProperty("self_pickup", data.getBoolean("self_pickup"));
-                object.addProperty("description_self_pickup", data.getString("description_self_pickup"));
-                object.addProperty("fon", data.getString("fon"));
-                object.addProperty("website", data.getString("website"));
-                object.addProperty("mail", data.getString("mail"));
-                object.addProperty("monday", data.getString("monday"));
-                object.addProperty("tuesday", data.getString("tuesday"));
-                object.addProperty("wednesday", data.getString("wednesday"));
-                object.addProperty("thursday", data.getString("thursday"));
-                object.addProperty("friday", data.getString("friday"));
-                object.addProperty("saturday", data.getString("saturday"));
-                object.addProperty("sunday", data.getString("sunday"));
+                for(int iterator = 1; iterator < data.getMetaData().getColumnCount(); iterator++) {
+                    switch (data.getMetaData().getColumnType(iterator)) {
+                        case 16 : object.addProperty(data.getMetaData().getColumnName(iterator), data.getBoolean(iterator)); break;
+                        case 4 : object.addProperty(data.getMetaData().getColumnName(iterator), data.getInt(iterator)); break;
+                        default : object.addProperty(data.getMetaData().getColumnName(iterator), data.getString(iterator)); break;
+                    }
+                }
                 jsonArray.add(object);
             }
             this.logger.log(LogType.INFO, "The cache was filled with shops from the database.");
         } catch (Exception e) {
+            e.printStackTrace();
             this.logger.log(LogType.ERROR, "Can't parse shops from database.");
         }
     }
