@@ -12,6 +12,7 @@ on:
 
 env:
   IMAGE_NAME: lieferberlino_web
+  IMAGE_NAME_BACKEND: lieferberlino_backend
 
 jobs:
   # Push image to GitHub Packages.
@@ -27,14 +28,19 @@ jobs:
       - name: Build image
         run: docker build ./web --file web/docker/production/Dockerfile --tag $IMAGE_NAME
 
+      - name: Build image
+        run: docker build ./backend --file backend/Dockerfile --tag $IMAGE_NAME_BACKEND
+
       - name: Log into GitHub Container Registry
         run: echo "${{ secrets.CR_PAT }}" | docker login https://ghcr.io -u ${{ github.actor }} --password-stdin
 
       - name: Push image to GitHub Container Registry
         run: |
           IMAGE_ID=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME
+          IMAGE_ID_BACKEND=ghcr.io/${{ github.repository_owner }}/$IMAGE_NAME_BACKEND
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+          IMAGE_ID_BACKEND=$(echo $IMAGE_ID_BACKEND | tr '[A-Z]' '[a-z]')
           # Strip git ref prefix from version
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           # Strip "v" prefix from tag name
@@ -44,4 +50,6 @@ jobs:
           echo IMAGE_ID=$IMAGE_ID
           echo VERSION=$VERSION
           docker tag $IMAGE_NAME $IMAGE_ID:$VERSION
+          docker tag $IMAGE_NAME_BACKEND $IMAGE_ID_BACKEND:$VERSION
           docker push $IMAGE_ID:$VERSION
+          docker push $IMAGE_ID_BACKEND:$VERSION

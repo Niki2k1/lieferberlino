@@ -14,19 +14,15 @@ export default new Vuex.Store({
   },
   mutations: {
     setLocation (state, val) {
-      fetch(`http://localhost:5000/geo/mapAddress?lat=${val.coords.latitude}&lon=${val.coords.longitude}`).then((response) => {
-        response.json().then((response) => {
-          const location = {
-            coords: {
-              latitude: val.coords.latitude,
-              longitude: val.coords.longitude
-            },
-            address: response.address
-          }
+      const location = {
+        coords: {
+          latitude: val.coords.latitude,
+          longitude: val.coords.longitude
+        },
+        address: 'Aktuelle Position'
+      }
 
-          state.location = location
-        })
-      })
+      state.location = location
     }
   },
   actions: {
