@@ -6,6 +6,7 @@ import de.oszimt.objects.logger.LogType;
 import de.oszimt.objects.logger.Logger;
 
 import java.sql.ResultSet;
+import java.sql.Types;
 
 public class ShopCache {
 
@@ -24,8 +25,9 @@ public class ShopCache {
                 object = new JsonObject();
                 for(int iterator = 1; iterator < data.getMetaData().getColumnCount(); iterator++) {
                     switch (data.getMetaData().getColumnType(iterator)) {
-                        case 16 : object.addProperty(data.getMetaData().getColumnName(iterator), data.getBoolean(iterator)); break;
-                        case 4 : object.addProperty(data.getMetaData().getColumnName(iterator), data.getInt(iterator)); break;
+                        case Types.BOOLEAN : object.addProperty(data.getMetaData().getColumnName(iterator), data.getBoolean(iterator)); break;
+                        case Types.TINYINT : object.addProperty(data.getMetaData().getColumnName(iterator), data.getBoolean(iterator)); break;
+                        case Types.INTEGER : object.addProperty(data.getMetaData().getColumnName(iterator), data.getInt(iterator)); break;
                         default : object.addProperty(data.getMetaData().getColumnName(iterator), data.getString(iterator)); break;
                     }
                 }
