@@ -1,10 +1,15 @@
 package de.oszimt.main;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import de.oszimt.objects.DataParser;
 import de.oszimt.objects.LocationIQConnector;
 import de.oszimt.objects.SQLConnection;
 import de.oszimt.objects.cache.ShopCache;
 import de.oszimt.objects.geo.MapAddressRequestHandler;
+import de.oszimt.objects.logger.LogType;
 import de.oszimt.objects.logger.Logger;
 import de.oszimt.objects.middleware.Cors;
 import de.oszimt.objects.middleware.CorsOptions;
@@ -31,7 +36,7 @@ public class Main {
         logger = new Logger();
         sqlConnection = new SQLConnection("jdbc:mysql://db.niki2k1.de:3306/lieferberlino?autoReconnect=true", logger);
         // Create all tables.
-        sqlConnection.execute("CREATE TABLE IF NOT EXISTS T_Shops (name VARCHAR(255), street VARCHAR(100), postalcode INTEGER, type VARCHAR(150), offer TEXT, delivery BOOLEAN, description_delivery TEXT, self_pickup BOOLEAN, description_self_pickup TEXT, fon VARCHAR(50), website VARCHAR(100), mail VARCHAR(50), monday VARCHAR(100), tuesday VARCHAR(100), wednesday VARCHAR(100), thursday VARCHAR(100), friday VARCHAR(100), saturday VARCHAR(100), sunday VARCHAR(100))");
+        sqlConnection.execute("CREATE TABLE IF NOT EXISTS T_Shops (id INTEGER NOT NULL AUTO_INCREMENT, name VARCHAR(255), street VARCHAR(100), postalcode INTEGER, type VARCHAR(150), offer TEXT, delivery BOOLEAN, description_delivery TEXT, self_pickup BOOLEAN, description_self_pickup TEXT, fon VARCHAR(50), website VARCHAR(100), mail VARCHAR(50), monday VARCHAR(100), tuesday VARCHAR(100), wednesday VARCHAR(100), thursday VARCHAR(100), friday VARCHAR(100), saturday VARCHAR(100), sunday VARCHAR(100), PRIMARY KEY (id))");
         shopCache = new ShopCache(sqlConnection.select("SELECT * FROM T_Shops"), logger);
         // Parse json file.
 

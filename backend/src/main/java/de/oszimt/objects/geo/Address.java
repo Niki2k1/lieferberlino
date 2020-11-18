@@ -38,8 +38,8 @@ public class Address {
 
     public static Address fromJson(JsonElement address) {
         return new Address(
-            address.getAsJsonObject().get("road").getAsString(),
-            address.getAsJsonObject().get("house_number").getAsString(),
+            address.getAsJsonObject().get("path") == null ? address.getAsJsonObject().get("road").getAsString() : address.getAsJsonObject().get("path").getAsString(),
+            address.getAsJsonObject().get("house_number") == null ? "unbekannt" : address.getAsJsonObject().get("house_number").getAsString(),
             address.getAsJsonObject().get("postcode").getAsString(),
             address.getAsJsonObject().get("state").getAsString()
         );

@@ -5,7 +5,7 @@ COPY src /home/app/src
 # Copy pom.xml to /home/app
 COPY pom.xml /home/app
 # Copy data.json to lib
-COPY data.json /usr/local/lib
+COPY data.json s
 # Build maven project
 RUN mvn -B package --file /home/app/pom.xml
 

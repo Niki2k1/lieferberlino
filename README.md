@@ -1,5 +1,5 @@
 # 🍕 Lieferberlino
-Als Schulprojekt haben wir eine Webapp geschrieben die eine Liste von OpenData Einträgen von Gastronomien filtern und durchsuchen lässt.
+Als Schulprojekt haben wir eine Webapp geschrieben die eine Liste von [OpenData Einträgen von Gastronomien](https://daten.berlin.de/datensaetze/gastronomien-laden-und-andere-gesch%C3%A4fte-mit-liefer-und-abholservice) filtern und durchsuchen lässt.
 
 # 📁 Dateistrukltur
 - web/
