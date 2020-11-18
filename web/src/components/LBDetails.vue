@@ -10,6 +10,15 @@
           <li><a :href="`mailto:${shop.mail}`">{{ shop.mail }}</a></li>
           <li>{{ shop.fon }}</li>
         </ul>
+        <ul class="opening-hours">
+          <li><span class="weekday">Montag: </span>{{ shop.monday || 'Geschlossen' }}</li>
+          <li><span class="weekday">Dienstag: </span>{{ shop.tuesday || 'Geschlossen' }}</li>
+          <li><span class="weekday">Mittwoch: </span>{{ shop.wednesday || 'Geschlossen' }}</li>
+          <li><span class="weekday">Donnerstag: </span>{{ shop.thursday || 'Geschlossen' }}</li>
+          <li><span class="weekday">Freitag: </span>{{ shop.friday || 'Geschlossen' }}</li>
+          <li><span class="weekday">Samstag: </span>{{ shop.satuarday || 'Geschlossen' }}</li>
+          <li><span class="weekday">Sonntag: </span>{{ shop.sunday || 'Geschlossen' }}</li>
+        </ul>
       </div>
       <div class="shipping-info">
         <div class="shipping">
@@ -58,7 +67,7 @@ export default {
 .details {
   display: flex;
   flex-direction: column;
-  padding: 2rem;
+  padding: 5rem;
 }
 
 .info {
@@ -87,7 +96,7 @@ export default {
   border: #C4C4C4 1px solid;
   background-color: #F5F5F5;
   padding: 2.5rem;
-  width: 45vw;
+  width: 40vw;
   text-align: center;
   display: flex;
   flex-direction: row;
@@ -110,5 +119,20 @@ export default {
   width: 3rem;
   height: 3rem;
   margin: auto;
+}
+
+.opening-hours {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.opening-hours li {
+  display: flex;
+}
+
+.opening-hours .weekday {
+  width: 7rem;
+  font-weight: 700;
 }
 </style>
