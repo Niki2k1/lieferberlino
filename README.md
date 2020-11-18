@@ -17,7 +17,7 @@ Als Schulprojekt haben wir eine Webapp geschrieben die eine Liste von [OpenData 
 - [geolib](https://www.npmjs.com/package/geolib)
 
 # 👥 Maintainer
-[Niklas Lausch](https://github.com/Niki2k1)
-[Dominikm Wodke](https://github.com/DWodke)
-[Viet Duc Hoang](https://github.com/vietduchoang)
-[Leon Heise](https://github.com/LeonStiljosoft)
+- [Niklas Lausch](https://github.com/Niki2k1)
+- [Dominikm Wodke](https://github.com/DWodke)
+- [Viet Duc Hoang](https://github.com/vietduchoang)
+- [Leon Heise](https://github.com/LeonStiljosoft)
