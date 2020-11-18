@@ -1,20 +1,22 @@
 <template>
   <div class="card">
-      <img src="https://via.placeholder.com/100 " :alt="`${name}_logo`"/>
+      <img src="https://via.placeholder.com/100 " :alt="`${shop.name}_logo`"/>
       <div class="infos">
-        <h1>{{ name }} <b-badge class="badge" pill variant="success">Open</b-badge></h1>
-        <h2>{{ address }}</h2>
-        <h2>{{ address2 }}</h2>
+        <h1>{{ shop.name }} <b-badge class="badge" pill variant="success">Open</b-badge></h1>
+        <h2>{{ shop.type }}</h2>
+        <h2>{{ shop.street }}</h2>
+        <h2>{{ shop.postalcode }} Ort</h2>
       </div>
+      <router-link :to="{ name: 'details', params: { id: shop.id }}" class="button">
+        <b-icon icon="arrow-right"/>
+      </router-link>
   </div>
 </template>
 
 <script>
 export default {
   props: [
-    'name',
-    'address',
-    'address2'
+    'shop'
   ]
 }
 </script>
@@ -58,5 +60,20 @@ export default {
 .card .infos h2 {
   line-height: .7;
   font-size: 1rem;
+}
+
+.button {
+  display: flex;
+  border-radius: 100%;
+  background-color: #848484;
+  color: white;
+  width: 4rem;
+  height: 4rem;
+  margin: auto 0 auto auto;
+  font-size: 2rem;
+}
+
+.button * {
+  margin: auto;
 }
 </style>

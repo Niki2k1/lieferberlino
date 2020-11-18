@@ -14,9 +14,7 @@
           <lb-card
             v-for="shop in pagedList"
             :key="shop.id"
-            :name="shop.name"
-            :address="shop.street"
-            :address2="shop.postalcode"
+            :shop="shop"
           />
         </div>
       </div>
@@ -39,14 +37,13 @@ export default {
     return {
       perPage: 20,
       currentPage: 1,
-      search: '',
-      shopList: []
+      search: ''
     }
   },
   mounted () {
-    fetch('https://api.lieferberlino.de/shops/getShops').then(async (response) => {
-      this.shopList = await response.json()
-    })
+    if (this.shopList.length === 0) {
+      this.$store.dispatch('getShops')
+    }
   },
   computed: {
     filteredList () {
@@ -59,6 +56,9 @@ export default {
     },
     rows () {
       return this.filteredList.length
+    },
+    shopList () {
+      return this.$store.state.shopList
     }
   }
 }

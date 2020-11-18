@@ -21,6 +21,7 @@ export default {
   name: 'LbHeader',
   created () {
     this.$store.dispatch('getCurrentLocation')
+    this.$store.dispatch('getShops')
   },
   computed: mapState({
     location: state => state.location
