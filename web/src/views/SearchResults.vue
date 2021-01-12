@@ -25,6 +25,7 @@
 import LbSlimHeader from '@/components/LbSlimHeader.vue'
 import LbSideBar from '@/components/LbSideBar.vue'
 import LbCard from '@/components/LbCard.vue'
+import { getDistance } from 'geolib'
 
 export default {
   name: 'SearchResults',
@@ -47,9 +48,24 @@ export default {
   },
   computed: {
     filteredList () {
-      return this.shopList.filter(shop => {
-        return shop.name.toLowerCase().includes(this.search.toLowerCase())
+      const list = this.shopList.filter(shop => {
+        const location = {
+          latitude: parseInt(shop.location.split(';')[0]),
+          longitude: parseInt(shop.location.split(';')[1])
+        }
+        const distance = getDistance(
+          this.$store.state.location.coords,
+          location
+        )
+
+        shop.distance = distance
+
+        return distance !== 0
       })
+
+      // list.sort((shop, shop2) => shop.distance - shop2.distance)
+
+      return list
     },
     pagedList () {
       return this.filteredList.slice((this.currentPage - 1) * this.perPage, ((this.currentPage - 1) * this.perPage) + this.perPage)

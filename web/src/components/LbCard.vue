@@ -1,8 +1,8 @@
 <template>
   <div class="card">
-      <img src="https://via.placeholder.com/100 " :alt="`${shop.name}_logo`"/>
+      <img :src="shop.image || 'https://via.placeholder.com/100'" :alt="`${shop.name}_logo`"/>
       <div class="infos">
-        <h1>{{ shop.name }} <b-badge class="badge" pill variant="success">Open</b-badge></h1>
+        <h1>{{ shop.name }} <b-badge class="badge" pill :variant="shop.isOpen ? 'success' : 'danger'">{{ shop.isOpen ? 'Geöffnet' : 'Geschlossen' }}</b-badge></h1>
         <h2>{{ shop.type }}</h2>
         <h2>{{ shop.street }}</h2>
         <h2>{{ shop.postalcode }} Ort</h2>
@@ -40,6 +40,11 @@ export default {
 
 .card img {
   border-radius: .5rem;
+  object-fit: contain;
+  width: 100px;
+  height: 100px;
+  padding: .5rem;
+  background-color: #cccccc;
 }
 
 .card .infos {

@@ -1,13 +1,13 @@
 <template>
   <div class="details">
       <div class="info">
-        <img src="https://via.placeholder.com/200 " :alt="`${shop.name}_logo`"/>
+        <img :src="shop.image || 'https://via.placeholder.com/200'" :alt="`${shop.name}_logo`"/>
         <ul>
-          <li><h2>{{ shop.name }}</h2></li>
-          <li>{{ shop.street }}</li>
-          <li>{{ shop.postalcode }}</li>
-          <li><a :href="shop.website">{{ shop.website }}</a></li>
-          <li><a :href="`mailto:${shop.mail}`">{{ shop.mail }}</a></li>
+          <li><h2>{{ shop.name }} <b-badge class="badge" pill :variant="shop.isOpen ? 'success' : 'danger'">{{ shop.isOpen ? 'Geöffnet' : 'Geschlossen' }}</b-badge></h2></li>
+          <li>{{ shop.street || 'Straße nicht verfügbar' }}</li>
+          <li>{{ shop.postalcode || 'PLZ nicht verfügbar' }}</li>
+          <li><a :href="shop.website" target="_blank">{{ shop.website || 'Keine Website vorhanden' }}</a></li>
+          <li><a :href="`mailto:${shop.mail}`">{{ shop.mail || 'Keine E-Mail vorhanden' }}</a></li>
           <li>{{ shop.fon }}</li>
         </ul>
         <ul class="opening-hours">
@@ -16,7 +16,7 @@
           <li><span class="weekday">Mittwoch: </span>{{ shop.wednesday || 'Geschlossen' }}</li>
           <li><span class="weekday">Donnerstag: </span>{{ shop.thursday || 'Geschlossen' }}</li>
           <li><span class="weekday">Freitag: </span>{{ shop.friday || 'Geschlossen' }}</li>
-          <li><span class="weekday">Samstag: </span>{{ shop.satuarday || 'Geschlossen' }}</li>
+          <li><span class="weekday">Samstag: </span>{{ shop.saturday || 'Geschlossen' }}</li>
           <li><span class="weekday">Sonntag: </span>{{ shop.sunday || 'Geschlossen' }}</li>
         </ul>
       </div>
@@ -68,6 +68,7 @@ export default {
   display: flex;
   flex-direction: column;
   padding: 5rem;
+  width: 100vw;
 }
 
 .info {
@@ -77,6 +78,11 @@ export default {
 
 .info img {
   border-radius: 15px;
+  object-fit: contain;
+  width: 200px;
+  height: 200px;
+  padding: .5rem;
+  background-color: #cccccc;
 }
 
 .info ul {
@@ -134,5 +140,52 @@ export default {
 .opening-hours .weekday {
   width: 7rem;
   font-weight: 700;
+}
+
+@media only screen and (max-width: 64em) {
+  .details {
+    padding: 1rem;
+  }
+
+  .info img {
+    width: 200px;
+    height: 200px;
+    margin: auto;
+  }
+
+  .info ul {
+    padding: 0;
+    margin: 2rem 0;
+  }
+
+  .card {
+    flex-flow: column;
+    width: 100%;
+  }
+
+  .icon {
+    width: 5rem;
+    height: 5rem;
+    margin: auto;
+    padding: 0 !important;
+    display: flex;
+    flex-flow: column;
+  }
+
+  .icon img {
+    margin: auto;
+  }
+
+  .card h5 {
+    margin-top: 1rem;
+  }
+
+  .collect {
+    margin-top: 2rem;
+  }
+
+  .shipping-info {
+    flex-flow: column;
+  }
 }
 </style>
