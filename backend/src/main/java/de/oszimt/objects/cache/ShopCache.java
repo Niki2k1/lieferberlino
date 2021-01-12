@@ -23,7 +23,7 @@ public class ShopCache {
             JsonObject object;
             while(data.next()) {
                 object = new JsonObject();
-                for(int iterator = 1; iterator < data.getMetaData().getColumnCount(); iterator++) {
+                for(int iterator = 1; iterator <= data.getMetaData().getColumnCount(); iterator++) {
                     switch (data.getMetaData().getColumnType(iterator)) {
                         case Types.BOOLEAN : object.addProperty(data.getMetaData().getColumnName(iterator), data.getBoolean(iterator)); break;
                         case Types.BIT : object.addProperty(data.getMetaData().getColumnName(iterator), data.getBoolean(iterator)); break;

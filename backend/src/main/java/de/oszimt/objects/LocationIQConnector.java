@@ -8,8 +8,10 @@ import de.oszimt.objects.logger.LogType;
 import de.oszimt.objects.logger.Logger;
 import org.apache.commons.io.IOUtils;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
 public class LocationIQConnector {
@@ -39,14 +41,27 @@ public class LocationIQConnector {
 
         return address;
     }
-    public Address getAddressFromAddressString(String addressString) throws IOException {
-        URL url = new URL("https://eu1.locationiq.com/v1/search.php?key=" + this.apikey + "&q=" + addressString + "&format=json");
+    public JsonObject getAddressFromAddressString(String addressString) throws IOException {
+        URL url = new URL("https://eu1.locationiq.com/v1/search.php?key=" + this.apikey + "&q=" + encodeValue(addressString) + "&format=json");
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
-        String responseString = IOUtils.toString(con.getInputStream(), StandardCharsets.UTF_8);
+        String responseString;
+        try {
+            responseString = IOUtils.toString(con.getInputStream(), StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            responseString = "[{\"lat\":\"0\", \"lon\": \"0\"}]";
+        }
         con.disconnect();
         JsonArray array = gson.fromJson(responseString, JsonArray.class);
         JsonObject response = array.get(0).getAsJsonObject();
-        return getAddressFromGeoLocation(Double.parseDouble(response.get("lat").getAsString()), Double.parseDouble(response.get("lon").getAsString()));
+        System.out.println(response.toString());
+        return response;
+    }
+    private static String encodeValue(String value) {
+        try {
+            return URLEncoder.encode(value, StandardCharsets.UTF_8.toString());
+        } catch (UnsupportedEncodingException ex) {
+            throw new RuntimeException(ex.getCause());
+        }
     }
 }
