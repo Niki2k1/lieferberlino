@@ -56,7 +56,7 @@ public class Main {
         MapAddressRequestHandler mapAddressRequestHandler = new MapAddressRequestHandler(locationIQConnector);
         GeoRoute geoRoute = new GeoRoute(mapAddressRequestHandler);
 
-        DataParser dataParser = new DataParser(new File("./data.json"));
+        /*DataParser dataParser = new DataParser(new File("./data.json"));
         // Get data from DataParser.
         JsonObject data = dataParser.getData();
 
@@ -65,7 +65,7 @@ public class Main {
         JsonObject address;
         String latAndLon;
         Integer pos = 0;
-        Integer max = 0;
+        Integer max = 0;*/
         /*ResultSet number = sqlConnection.select("SELECT id FROM T_Shops");
         if(number.next()) {
             max = number.getFetchSize();
