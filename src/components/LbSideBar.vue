@@ -3,14 +3,14 @@
       <div class="filter">
         <h2>Bestellung</h2>
         <div class="button-group">
-          <button class="filter-button active">Abholung</button>
-          <button class="filter-button">Lieferung</button>
+          <button id="pickup" :class="`filter-button ${isDelivery ? '' : 'active'}`" @click="changeType">Abholung</button>
+          <button id="delivery" :class="`filter-button ${isDelivery ? 'active' : ''}`" @click="changeType">Lieferung</button>
         </div>
         <div class="radius">
           <h3>Radius</h3>
           <h3 id="range-label">{{ range }}km</h3>
         </div>
-        <input type="range" min="1" max="20" v-model="range" class="slider" id="range-slider">
+        <input type="range" min="1" max="20" v-model="range" @input="changed" class="slider" id="range-slider">
       </div>
   </div>
 </template>
@@ -19,7 +19,21 @@
 export default {
   data () {
     return {
+      isDelivery: false,
       range: 15
+    }
+  },
+  methods: {
+    changeType (event) {
+      if (event.target.id === 'delivery') {
+        this.isDelivery = true
+      } else {
+        this.isDelivery = false
+      }
+      this.$emit('typeChange', event.target.id)
+    },
+    changed () {
+      this.$emit('rangeChange', this.range)
     }
   }
 }

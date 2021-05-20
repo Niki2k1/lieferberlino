@@ -2,7 +2,7 @@
   <div class="search-results">
       <lb-slim-header/>
       <div class="frame">
-        <lb-side-bar/>
+        <lb-side-bar v-on:rangeChange="rangeChange" v-on:typeChange="typeChange"/>
         <div class="card-list">
           <b-pagination
             class="m-4"
@@ -38,7 +38,9 @@ export default {
     return {
       perPage: 20,
       currentPage: 1,
-      search: ''
+      search: '',
+      range: Infinity,
+      type: 'pickup'
     }
   },
   mounted () {
@@ -50,9 +52,23 @@ export default {
       this.$store.dispatch('getCurrentLocation')
     }
   },
+  methods: {
+    rangeChange (range) {
+      this.range = range * 1000
+    },
+    typeChange (type) {
+      this.type = type
+    }
+  },
   computed: {
     filteredList () {
       const list = this.shopList.filter(shop => {
+        if (shop.delivery && this.type === 'delivery') {
+          return false
+        } else if (shop.self_pickup && this.type === 'pickup') {
+          return false
+        }
+
         const location = {
           latitude: parseFloat(shop.location.split(';')[0]),
           longitude: parseFloat(shop.location.split(';')[1])
@@ -70,7 +86,12 @@ export default {
 
         shop.distance = distance
 
-        return distance !== 0
+        if (distance > this.range) {
+          return false
+        } else if (distance === 0) {
+          return false
+        }
+        return true
       })
 
       list.sort((shop, shop2) => shop.distance - shop2.distance)
