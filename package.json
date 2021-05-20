@@ -1,6 +1,6 @@
 {
   "name": "lieferberlino",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
   "scripts": {
     "install_dev": "docker-compose run web_dev npm install",

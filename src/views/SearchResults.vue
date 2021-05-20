@@ -45,16 +45,26 @@ export default {
     if (this.shopList.length === 0) {
       this.$store.dispatch('getShops')
     }
+
+    if (this.$store.state.location.coords.latitude === 0) {
+      this.$store.dispatch('getCurrentLocation')
+    }
   },
   computed: {
     filteredList () {
       const list = this.shopList.filter(shop => {
         const location = {
-          latitude: parseInt(shop.location.split(';')[0]),
-          longitude: parseInt(shop.location.split(';')[1])
+          latitude: parseFloat(shop.location.split(';')[0]),
+          longitude: parseFloat(shop.location.split(';')[1])
         }
+
+        const currentCoords = {
+          latitude: this.$store.state.location.coords.latitude,
+          longitude: this.$store.state.location.coords.longitude
+        }
+
         const distance = getDistance(
-          this.$store.state.location.coords,
+          currentCoords,
           location
         )
 
@@ -63,7 +73,7 @@ export default {
         return distance !== 0
       })
 
-      // list.sort((shop, shop2) => shop.distance - shop2.distance)
+      list.sort((shop, shop2) => shop.distance - shop2.distance)
 
       return list
     },

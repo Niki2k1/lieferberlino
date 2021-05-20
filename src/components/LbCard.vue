@@ -3,6 +3,7 @@
       <img :src="shop.image || 'https://via.placeholder.com/100'" :alt="`${shop.name}_logo`"/>
       <div class="infos">
         <h1>{{ shop.name }} <b-badge class="badge" pill :variant="shop.isOpen ? 'success' : 'danger'">{{ shop.isOpen ? 'Geöffnet' : 'Geschlossen' }}</b-badge></h1>
+        <h2>{{ format(shop.distance) }} entfernt</h2>
         <h2>{{ shop.type }}</h2>
         <h2>{{ shop.street }}</h2>
         <h2>{{ shop.postalcode }} Ort</h2>
@@ -17,7 +18,15 @@
 export default {
   props: [
     'shop'
-  ]
+  ],
+  methods: {
+    format (meter) {
+      if (meter > 1000) {
+        return `${(meter / 1000).toFixed(1)} km`
+      }
+      return `${meter} m`
+    }
+  }
 }
 </script>
 
