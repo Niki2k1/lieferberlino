@@ -1,11 +1,11 @@
-# 🍕 Lieferberlino
+# 🍕 Lieferberlino (Frontend)
 Als Schulprojekt haben wir eine Webapp geschrieben die eine Liste von [OpenData Einträgen von Gastronomien](https://daten.berlin.de/datensaetze/gastronomien-laden-und-andere-gesch%C3%A4fte-mit-liefer-und-abholservice) filtern und durchsuchen lässt.
 
-# 📁 Dateistrukltur
-- web/
-    - Eine Vue Webapp als Frontend
-- backend/
-    - Das Backend welches die Daten hält und die API für das Frontend bietet
+# 🖥️ Usage
+You can start this project with and head to the browser https://localhost:8080
+```
+npm run serve
+```
 
 # 📚 Dependencies
 - [Berlin OpenData Datenquelle](https://daten.berlin.de/datensaetze/gastronomien-laden-und-andere-gesch%C3%A4fte-mit-liefer-und-abholservice)
